@@ -1,0 +1,6 @@
+* Dotfiles
+This is my dotfiles repository. It's used to synchronise my configuration on my
+work laptop, personal laptop, Raspberry Pi and other systems.
+
+** TODO Setting up a new machine
+** TODO Updating files

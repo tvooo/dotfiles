@@ -1,0 +1,20 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ["~"]
+
+- link:
+    ~/.env.sh: env.sh
+    ~/.aliases.sh: aliases.sh
+    ~/.bashrc: bashrc
+    ~/.zshrc: zshrc
+    ~/.doom.d: doom.d
+
+# - create:
+#     - ~/downloads
+#     - ~/.vim/undo-history
+
+- shell:
+    - [git submodule update --init --recursive, Installing submodules]
+    - [echo "install doom emacs", Installing Emacs Doom]

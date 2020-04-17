@@ -18,3 +18,7 @@
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
     - [echo "install doom emacs", Installing Emacs Doom]
+    - [
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended,
+        Installing oh-my-zsh,
+      ]

@@ -2,13 +2,13 @@
 This is my dotfiles repository. It's used to synchronise my configuration on my
 work laptop, personal laptop, Raspberry Pi and other systems.
 
-It's poweder by [Dotbot](https://github.com/anishathalye/dotbot)
+It's poweder by [[Dotbot][https://github.com/anishathalye/dotbot]]
 
 ** Prerequisites
 Make sure the following are installed:
 - python, git, zsh
 - ripgrep (for Doom)
-- [Input Mono](https://input.fontbureau.com/), including the Narrow variant (for Doom)
+- [[Input Mono][https://input.fontbureau.com/]], including the Narrow variant (for Doom)
 
 ** Setting up a new machine
 
@@ -18,6 +18,6 @@ cd ~/dotfiles
 ./install
 #+END_SRC
 
-The install script will tell you when links couldn't be created. Make sure to port over any host-specific shell configuration into `~/.host.sh` and remove your `.bashrc` and `.zshrc`.
+The install script will tell you when links couldn't be created. Make sure to port over any host-specific shell configuration into =~/.host.sh= and remove your =.bashrc= and =.zshrc=.
 
 ** TODO Updating files

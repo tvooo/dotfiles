@@ -2,13 +2,13 @@
 This is my dotfiles repository. It's used to synchronise my configuration on my
 work laptop, personal laptop, Raspberry Pi and other systems.
 
-It's poweder by [[Dotbot][https://github.com/anishathalye/dotbot]]
+It's poweder by [[https://github.com/anishathalye/dotbot][Dotbot]]
 
 ** Prerequisites
 Make sure the following are installed:
 - python, git, zsh
 - ripgrep (for Doom)
-- [[Input Mono][https://input.fontbureau.com/]], including the Narrow variant (for Doom)
+- [[https://input.fontbureau.com/][Input Mono]], including the Narrow variant (for Doom)
 
 ** Setting up a new machine
 

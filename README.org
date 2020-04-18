@@ -2,7 +2,7 @@
 This is my dotfiles repository. It's used to synchronise my configuration on my
 work laptop, personal laptop, Raspberry Pi and other systems.
 
-It's poweder by [[https://github.com/anishathalye/dotbot][Dotbot]]
+It's powered by [[https://github.com/anishathalye/dotbot][Dotbot]]
 
 ** Prerequisites
 Make sure the following are installed:

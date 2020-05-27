@@ -30,6 +30,8 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-one)
+(require 'eink-theme "~/.timacs/eink-theme")
+(load-theme 'eink t)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -61,6 +63,8 @@
 (setq org-inbox-file "~/org/inbox.org")
 (setq org-journal-dir "~/org/journal/")
 (setq org-roam-directory tim/org-agenda-directory)
+(setq deft-directory tim/org-agenda-directory)
+(setq deft-recursive t)
 
 (setq initial-buffer-choice "~/org/inbox.org")
 
@@ -89,30 +93,31 @@
                       (find-lisp-find-files tim/org-agenda-directory "\.org$")))
 
 (after! org
-  ;; Hide all tags from the agenda
+;; Hide all tags from the agenda
   (setq org-agenda-hide-tags-regexp ".*")
   ;; Capture templates
   (setq org-capture-templates
              '(("t" "Task" entry
-               (file org-inbox-file)
-               "* TODO %? ")
+                (file org-inbox-file)
+"* TODO %? ")
 
-             ("n" "Note" entry
-               (file org-inbox-file)
-               "* %? ")
+            ("n" "Note" entry
+                (file org-inbox-file)
+"* %? ")
 
-             ("l" "TIL" entry
-               (file+olp "~/org/til.org" "Today I Learned")
-               "* %? ")
+            ("l" "TIL" entry
+                (file+olp "~/org/til.org" "Today I Learned")
+"* %? ")
 
-             ("b" "Book" entry
-               (file+olp "~/org/media.org" "Books" "Backlog")
-               "* %? ")
+            ("b" "Book" entry
+                (file+olp "~/org/media.org" "Books" "Backlog")
+"* %? ")
 
-             ("m" "Morning pages" entry
-               (file+olp+datetree "~/org/journal/morningpages.org" "Morning pages")
-               (file "~/org/templates/morningpages.template.org")
-               :tree-type week)))
+            ("m" "Morning pages" entry
+                (file+olp+datetree "~/org/journal/morningpages.org" "Morning pages")
+                (file "~/org/templates/morningpages.template.org")
+                 :tree-type week)))
+
 
 ;; When I’m starting an Org capture template I’d like to begin in insert mode. I’m opening it up in order to start typing something, so this skips a step.
    (add-hook 'org-capture-mode-hook 'evil-insert-state)
@@ -144,13 +149,13 @@
 
 (after! org (setq org-habit-show-habits t
                   ;; Make sure calendar views start the week on Monday
-                  org-agenda-start-on-weekday 1
-                  calendar-week-start-day 1))
+org-agenda-start-on-weekday 1
+calendar-week-start-day 1))
 
-  (org-super-agenda-mode t)
+(org-super-agenda-mode t)
 
-   (setq org-super-agenda-groups
-         '((:name "Next Items"
+(setq org-super-agenda-groups
+'((:name "Next Items"
                   :time-grid t
                   :tag ("NEXT" "outbox"))
            (:name "Important"
@@ -172,7 +177,7 @@
           (< (plist-get entry :progress-percent) 100)
           (not (member "archive" (plist-get entry :tags)))))
 
-   (setq org-dashboard-filter 'my/org-dashboard-filter)
+(setq org-dashboard-filter 'my/org-dashboard-filter)
 
 
 (setq emojify-display-style "unicode")
@@ -214,8 +219,10 @@
 
   :config
   (require 'org-roam-protocol)
-  (setq org-roam-capture-templates
-        '(("d" "default" plain (function org-roam--capture-get-point)
+    (setq org-roam-graph-executable "/usr/local/bin/dot")
+    (setq org-roam-graph-viewer "open")
+    (setq org-roam-capture-templates
+'(("d" "default" plain (function org-roam--capture-get-point)
            "%?"
            :file-name "${slug}"
            :head "#+TITLE: ${title}\n\n"
@@ -227,3 +234,4 @@
       ;;      :unnarrowed t)
            ))
   )
+(require 'beancount "~/.timacs/beancount")

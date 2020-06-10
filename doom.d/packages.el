@@ -50,3 +50,4 @@
 (package! olivetti)
 (package! emojify)
 (package! adaptive-wrap)
+(package! org-ql)

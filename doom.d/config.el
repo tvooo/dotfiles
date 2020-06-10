@@ -29,7 +29,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+;; (setq doom-theme 'doom-one)
 (require 'eink-theme "~/.timacs/eink-theme")
 (load-theme 'eink t)
 
@@ -154,8 +154,36 @@ calendar-week-start-day 1))
 
 (org-super-agenda-mode t)
 
+(setq org-agenda-block-separator nil
+      org-agenda-compact-blocks t)
+
+
+(setq org-agenda-custom-commands
+      '(("o" "Overview"
+          (
+           (todo "" ((org-agenda-overriding-header "Active projects")
+                     (org-super-agenda-groups
+                      '((:name none  ; Disable super group header
+                               :tag ("@project" "project")
+                               )
+                        (:discard (:anything t))))))
+           (todo "" ((org-agenda-overriding-header "Currently reading")
+                     (org-super-agenda-groups
+                      '((:name none  ; Disable super group header
+                               :todo "READING")
+                        (:discard (:anything t))))))
+            (todo "" ((org-agenda-overriding-header "Paused reading")
+                     (org-super-agenda-groups
+                      '((:name none  ; Disable super group header
+                               :todo "PAUSED")
+                        (:discard (:anything t))))))
+         
+                        
+                        
+                        ))))
+
 (setq org-super-agenda-groups
-'((:name "Next Items"
+'((:name "Today"
                   :time-grid t
                   :tag ("NEXT" "outbox"))
            (:name "Important"
@@ -199,6 +227,67 @@ calendar-week-start-day 1))
 
 (plist-put +popup-defaults :modeline t)
 
+(setq org-refile-targets (quote ((nil :maxlevel . 9)
+                                 (org-agenda-files :maxlevel . 9))))
+
+;;(setq tim/todo-project '(sequence "PLANNED(p)" "ACTIVE(a)" "|" "COMPLETED(c)"))
+;;(setq tim/todo-default '(sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)"))
+;;(setq tim/todo-book '(sequence "TOREAD(t)" "READING(r)" "PAUSED(p)" "|" "FINISHED(f)"))
+
+;;(after! org (setq org-todo-keywords '(tim/todo-default tim/todo-project tim/todo-book)))
+;;(setq org-todo-keywords '(tim/todo-default tim/todo-project tim/todo-book))
+
+
+
+(set-face-attribute 'org-todo nil
+                    :height 0.8
+                    :weight 'semi-bold
+                    :inverse-video t
+                    :box '(:line-width 2 
+                           :color "black" 
+                           :style nil)
+                    )
+(set-face-attribute 'org-done nil
+                    :height 0.8
+                    :weight 'semi-bold
+                    )
+
+(set-face-attribute 'org-tag nil
+                    :foreground "purple"
+                    :height 0.8
+                    :weight 'semi-bold
+                    )
+
+;; (let ((fg "#111111")
+;;       (fg-table "#222291")
+;;       (bg "#fffff8")
+;;       (bg-light "#ddddd8")
+;;       (fg-light "#ddddd8")
+;;       (bg-highlight "#FFF1AA")
+;;       (bg-highlight-2 "LightCyan")
+;;       (bg-highlight-3 "LightGreen"))
+
+(setq green "#e9ffe9")
+(setq yell "#fff1aa")
+
+ (set-face-attribute 'org-habit-alert-face nil :background yell)
+   (set-face-attribute 'org-habit-alert-future-face nil :background "#fff1aa")
+   (set-face-attribute 'org-habit-clear-face nil :background "blue")
+   (set-face-attribute 'org-habit-clear-future-face nil :background "blue")
+   (set-face-attribute 'org-habit-overdue-face nil :background "red")
+   (set-face-attribute 'org-habit-overdue-future-face nil :background "red")
+   (set-face-attribute 'org-habit-ready-face nil :background green)
+   (set-face-attribute 'org-habit-ready-future-face nil :background green)
+
+;; (font-lock-add-keywords 'org-mode
+ ;; '(("^.*:project:.*$" . font-lock-keyword-face)))
+
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+        (sequence "PLANNED(p)" "ACTIVE(a)" "|" "COMPLETED(c)")
+        (sequence "TOREAD(t)" "READING(r)" "PAUSED(p)" "|" "FINISHED(f)")))
+
+
 (setq doom-leader-key ","
   doom-localleader-key ", m")
 
@@ -226,6 +315,16 @@ calendar-week-start-day 1))
            "%?"
            :file-name "${slug}"
            :head "#+TITLE: ${title}\n\n"
+           :unnarrowed t)
+  ("p" "project" plain (function org-roam--capture-get-point)
+           "%?"
+           :file-name "${slug}"
+           :head "#+TITLE: Project: ${title}\n#+SEQ_TODO: PLANNED(p) ACTIVE(A) HOLD(h) | DONE(d)\n\n"
+           :unnarrowed t)
+  ("b" "book" plain (function org-roam--capture-get-point)
+           "%?"
+           :file-name "${slug}"
+           :head "#+TITLE: Book: ${title}\n#+CATEGORY: book\n#+SEQ_TODO: TODO(t) READING(r) PAUSED(p) | DONE(d) CANCELLED(c)\n\n* TODO [%] Book: ${title}\n* Notes"
            :unnarrowed t)
       ;;     ("p" "private" plain (function org-roam-capture--get-point)
       ;;      "%?"

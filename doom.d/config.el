@@ -21,10 +21,10 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 14))
 
-(setq doom-font (font-spec :family "InputMonoNarrow" :size 14)
+(setq doom-font (font-spec :family "InputMonoNarrow" :size 21)
       doom-variable-pitch-font (font-spec :family "InputMonoNarrow" :height 120)
       doom-unicode-font (font-spec :family "all-the-icons")
-      doom-big-font (font-spec :family "InputMonoNarrow" :size 18))
+      doom-big-font (font-spec :family "InputMonoNarrow" :size 28))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -70,7 +70,7 @@
 
 (after! org (setq org-indent-mode t
                   org-startup-truncated nil
-                  org-ellipsis " ︙ "))
+                  org-ellipsis "  "))
 
 ;; Tags
 ;; Don't right-align tags in headlines
@@ -198,14 +198,6 @@ calendar-week-start-day 1))
            (:priority<= "B"
                         :scheduled future
                         :order 1)))
-
-(require 'org-dashboard "~/.timacs/org-dashboard")
-  (defun my/org-dashboard-filter (entry)
-     (and ;;(> (plist-get entry :progress-percent) 0)
-          (< (plist-get entry :progress-percent) 100)
-          (not (member "archive" (plist-get entry :tags)))))
-
-(setq org-dashboard-filter 'my/org-dashboard-filter)
 
 
 (setq emojify-display-style "unicode")

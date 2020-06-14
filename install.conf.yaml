@@ -10,6 +10,7 @@
     ~/.bashrc: bashrc
     ~/.zshrc: zshrc
     ~/.doom.d: doom.d
+    ~/.timacs: timacs
 
 # - create:
 #     - ~/downloads

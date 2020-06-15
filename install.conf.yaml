@@ -11,6 +11,9 @@
     ~/.zshrc: zshrc
     ~/.doom.d: doom.d
     ~/.timacs: timacs
+    ~/.config/bspwm/bspwmrc: bspwmrc
+    ~/.config/sxhkd/sxhkdrc: sxhkdrc
+    ~/.config/polybar/config: polybar-config
 
 # - create:
 #     - ~/downloads

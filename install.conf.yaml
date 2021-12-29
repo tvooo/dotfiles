@@ -11,12 +11,6 @@
     ~/.zshrc: zshrc
     ~/.doom.d: doom.d
     ~/.timacs: timacs
-    ~/.config/bspwm/bspwmrc: bspwmrc
-    ~/.config/sxhkd/sxhkdrc: sxhkdrc
-    ~/.config/polybar/config: polybar-config
-    ~/.config/dunst/dunstrc: dunstrc
-    ~/.config/compton.conf: compton.conf
-    ~/.local/share/rofi/themes/tim.rasi: tim.rasi
 
 # - create:
 #     - ~/downloads
